@@ -9,9 +9,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models import SupportAction, SupportObservation
 
 app = create_fastapi_app(CustomerSupportEnv, SupportAction, SupportObservation)
-
 def main():
-    uvicorn.run("server.app:app", host="0.0.0.0", port=7860)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("server.app:app", host="0.0.0.0", port=port)
 
 if __name__ == "__main__":
     main()
